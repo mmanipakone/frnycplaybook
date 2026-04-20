@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FutureReady NYC — Recruitment &amp; Retention Playbook Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:    #0F3460;
+  --navy-dk: #081F3F;
+  --crimson: #B5162B;
+  --gold:    #F5C518;
+  --white:   #FFFFFF;
+  --off:     #F7F9FC;
+  --slate:   #4A5568;
+  --green:   #1a7a42;
+  --font-h:  'Montserrat', sans-serif;
+  --font-b:  'Inter', sans-serif;
+  --sw: 1280px;
+  --sh: 720px;
+}
+
+body {
+  background: #111827;
+  font-family: var(--font-b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 100px;
+  gap: 0;
+}
+
+/* ─── SLIDE BASE ─── */
+.slide {
+  width: var(--sw);
+  height: var(--sh);
+  position: relative;
+  overflow: hidden;
+  display: none;
+  flex-shrink: 0;
+}
+.slide.active { display: flex; }
+.slide-num {
+  position: absolute;
+  bottom: 20px; right: 28px;
+  font-family: var(--font-h);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em;
+  opacity: .38;
+  color: inherit;
+  z-index: 10;
+}
+
+/* ─── CONTROLS ─── */
+.controls {
+  position: fixed;
+  bottom: 22px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 10px; align-items: center;
+  background: rgba(8,31,63,.96);
+  border: 1px solid rgba(245,197,24,.35);
+  border-radius: 40px;
+  padding: 9px 20px;
+  z-index: 1000;
+}
+.controls button {
+  background: none; border: none;
+  color: var(--gold);
+  font-family: var(--font-h); font-size: 12px; font-weight: 700;
+  letter-spacing: .06em; cursor: pointer;
+  padding: 4px 14px; border-radius: 20px; transition: background .18s;
+}
+.controls button:hover { background: rgba(245,197,24,.14); }
+.ctrl-ct { color: #fff; font-size: 12px; min-width: 60px; text-align: center; }
+
+/* ─── SLIDE: COVER ─── */
+.s-cover {
+  background: var(--navy-dk);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 88px 64px;
+}
+.s-cover .bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 20%;
+}
+.s-cover .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(8,31,63,.2) 0%, rgba(8,31,63,.88) 100%);
+}
+.s-cover .eyebrow {
+  font-family: var(--font-h); font-size: 12px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px; position: relative;
+}
+.s-cover h1 {
+  font-family: var(--font-h); font-size: 62px; font-weight: 900;
+  line-height: 1.04; text-transform: uppercase; color: white;
+  position: relative; margin-bottom: 16px;
+}
+.s-cover h1 em { color: var(--gold); font-style: normal; }
+.s-cover .sub {
+  font-size: 19px; color: rgba(255,255,255,.7); line-height: 1.55;
+  max-width: 600px; position: relative; margin-bottom: 44px;
+}
+.s-cover .logos {
+  display: flex; align-items: center; gap: 22px; position: relative;
+}
+.s-cover .logos img { height: 42px; object-fit: contain; filter: brightness(0) invert(1); }
+.s-cover .logos .ld { width: 1px; height: 32px; background: rgba(255,255,255,.3); }
+.cover-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--crimson) 60%, var(--navy) 100%);
+}
+
+/* ─── SLIDE: SECTION DIVIDER ─── */
+.s-div {
+  background: var(--navy);
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 88px;
+}
+.s-div .bg {
+  position: absolute; top: 0; right: 0; width: 480px; height: 100%;
+  background-size: cover; background-position: center;
+  opacity: .22;
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
+}
+.s-div .dnum {
+  font-family: var(--font-h); font-size: 130px; font-weight: 900;
+  color: rgba(245,197,24,.13); line-height: 1; margin-bottom: -16px;
+}
+.s-div .drule { width: 52px; height: 5px; background: var(--gold); margin-bottom: 18px; }
+.s-div h2 {
+  font-family: var(--font-h); font-size: 50px; font-weight: 900;
+  text-transform: uppercase; color: white; line-height: 1.1; max-width: 600px;
+  margin-bottom: 14px;
+}
+.s-div .dsub { font-size: 18px; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.55; }
+
+/* ─── SLIDE: CONTENT (light bg) ─── */
+.s-content {
+  background: var(--off);
+  flex-direction: column;
+}
+.s-content .s-head {
+  background: var(--navy);
+  padding: 24px 64px;
+  display: flex; align-items: flex-end; gap: 0;
+}
+.s-content .s-head .eyebrow {
+  font-family: var(--font-h); font-size: 10px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 5px;
+}
+.s-content .s-head h2 {
+  font-family: var(--font-h); font-size: 24px; font-weight: 900;
+  text-transform: uppercase; color: white; line-height: 1.15;
+}
+.s-content .s-body {
+  flex: 1; padding: 28px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+
+/* ─── SLIDE FOOTER ─── */
+.s-foot {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 40px; background: var(--navy-dk);
+  display: flex; align-items: center; padding: 0 64px; gap: 16px;
+}
+.s-foot img { height: 18px; object-fit: contain; filter: brightness(0) invert(1); opacity: .7; }
+.s-foot .fd { width: 1px; height: 14px; background: rgba(255,255,255,.25); }
+.s-foot .fl { font-family: var(--font-h); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-left: auto; }
+
+/* ─── COMPONENTS ─── */
+.cards-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cards-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.p-card {
+  background: white; border-radius: 10px; padding: 18px;
+  border-top: 4px solid var(--navy);
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+}
+.p-card.gold { border-top-color: var(--gold); }
+.p-card.crimson { border-top-color: var(--crimson); }
+.p-card.green { border-top-color: var(--green); }
+.p-card.blue { border-top-color: #3B82F6; }
+.p-card.purple { border-top-color: #A855F7; }
+.p-card .card-num {
+  font-family: var(--font-h); font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--slate); margin-bottom: 6px; opacity: .7;
+}
+.p-card h3 {
+  font-family: var(--font-h); font-size: 13px; font-weight: 800;
+  text-transform: uppercase; color: var(--navy); margin-bottom: 7px;
+}
+.p-card p, .p-card li { font-size: 12.5px; color: var(--slate); line-height: 1.55; }
+.p-card ul { padding-left: 14px; }
+.p-card .risk { font-size: 11px; color: #9CA3AF; margin-top: 6px; }
+
+.callout {
+  background: var(--navy); border-left: 5px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0;
+}
+.callout p { font-size: 13px; color: rgba(255,255,255,.85); line-height: 1.65; font-style: italic; }
+.callout .attr { font-family: var(--font-h); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); margin-top: 8px; }
+
+.key-moment {
+  background: var(--crimson); border-radius: 8px; padding: 14px 18px; margin: 12px 0;
+}
+.key-moment .kml { font-family: var(--font-h); font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.65); margin-bottom: 4px; }
+.key-moment p { font-size: 13px; color: white; line-height: 1.6; font-weight: 500; }
+
+.tip {
+  display: flex; gap: 12px;
+  background: #FEF3C7; border: 1.5px solid #FCD34D; border-radius: 8px;
+  padding: 11px 16px; margin: 10px 0;
+}
+.tip-icon { font-size: 16px; flex-shrink: 0; }
+.tip p { font-size: 12.5px; color: #78350F; line-height: 1.5; }
+
+.stats-row { display: flex; gap: 14px; margin: 16px 0; }
+.stat-box {
+  flex: 1; background: var(--navy-dk); border-radius: 10px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-box .sn { font-family: var(--font-h); font-size: 40px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+.stat-box .sn span { color: var(--crimson); }
+.stat-box .sl { font-size: 11.5px; color: rgba(255,255,255,.65); line-height: 1.4; }
+
+/* Funnel */
+.funnel { display: flex; flex-direction: column; gap: 8px; }
+.f-row { display: flex; align-items: center; gap: 12px; }
+.f-label { font-family: var(--font-h); font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--navy); width: 100px; flex-shrink: 0; }
+.f-track { flex: 1; background: #E2E8F0; border-radius: 4px; height: 26px; overflow: hidden; }
+.f-fill { height: 100%; background: linear-gradient(90deg, var(--navy) 0%, var(--crimson) 100%); display: flex; align-items: center; padding: 0 10px; border-radius: 4px; }
+.f-fill span { font-family: var(--font-h); font-size: 10px; font-weight: 800; color: white; white-space: nowrap; }
+
+/* Barrier */
+.barrier-list { display: flex; flex-direction: column; gap: 9px; }
+.barrier {
+  display: grid; grid-template-columns: 26px 1fr 1fr; gap: 12px;
+  background: white; border-radius: 8px; padding: 11px 14px; align-items: start;
+  box-shadow: 0 1px 5px rgba(0,0,0,.06);
+}
+.b-num { width: 24px; height: 24px; background: var(--crimson); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-h); font-size: 11px; font-weight: 800; color: white; flex-shrink: 0; }
+.b-problem h5 { font-family: var(--font-h); font-size: 10px; font-weight: 800; color: var(--navy); text-transform: uppercase; margin-bottom: 2px; }
+.b-problem p { font-size: 11.5px; color: var(--slate); line-height: 1.45; }
+.b-fix { border-left: 2px solid var(--green); padding-left: 10px; }
+.b-fix h5 { font-family: var(--font-h); font-size: 10px; font-weight: 800; color: var(--green); text-transform: uppercase; margin-bottom: 2px; }
+.b-fix p { font-size: 11.5px; color: var(--slate); line-height: 1.45; }
+
+/* 4-Quad framework */
+.four-quad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fq { border-radius: 10px; padding: 16px; }
+.fq.outcome { background: #EFF6FF; border-top: 4px solid #3B82F6; }
+.fq.skills  { background: #F0FDF4; border-top: 4px solid #22C55E; }
+.fq.exp     { background: #FFF7ED; border-top: 4px solid #F97316; }
+.fq.payoff  { background: #FAF5FF; border-top: 4px solid #A855F7; }
+.fq .fl { font-family: var(--font-h); font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+.fq.outcome .fl { color: #1D4ED8; }
+.fq.skills  .fl { color: #15803D; }
+.fq.exp     .fl { color: #C2410C; }
+.fq.payoff  .fl { color: #7E22CE; }
+.fq h4 { font-family: var(--font-h); font-size: 14px; font-weight: 900; color: #1A202C; margin-bottom: 6px; }
+.fq ul { padding-left: 13px; }
+.fq li { font-size: 12px; color: var(--slate); line-height: 1.55; }
+
+/* KIMS table */
+.kims-t { width: 100%; border-collapse: collapse; font-size: 12px; }
+.kims-t th { background: var(--navy); color: white; font-family: var(--font-h); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; text-align: left; }
+.kims-t td { padding: 8px 12px; border-bottom: 1px solid #E2E8F0; color: var(--slate); vertical-align: top; }
+.kims-t tr:nth-child(even) td { background: white; }
+.kims-t .oc { font-weight: 600; color: var(--navy); }
+
+/* Msg table */
+.msg-t { width: 100%; border-collapse: collapse; font-size: 12px; }
+.msg-t th { font-family: var(--font-h); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; text-align: left; }
+.msg-t .mwho { background: var(--navy); color: white; }
+.msg-t .mdo  { background: var(--green); color: white; }
+.msg-t .mavd { background: var(--crimson); color: white; }
+.msg-t td { padding: 8px 12px; border-bottom: 1px solid #E2E8F0; color: var(--slate); vertical-align: top; }
+.msg-t tr:nth-child(even) td { background: white; }
+.msg-t .dt { color: #065F46; font-weight: 500; }
+.msg-t .at { color: #991B1B; font-weight: 500; }
+
+/* Year compare */
+.year-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.yc-col { border-radius: 10px; overflow: hidden; }
+.yc-h { padding: 10px 16px; font-family: var(--font-h); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: white; }
+.yc-h.y0 { background: var(--crimson); }
+.yc-h.y1 { background: var(--navy); }
+.yc-b { background: white; padding: 12px 16px; }
+.yc-b ul { padding-left: 14px; }
+.yc-b li { font-size: 12px; color: var(--slate); line-height: 1.65; margin-bottom: 2px; }
+
+/* Steps list */
+.steps { display: flex; flex-direction: column; gap: 9px; }
+.step { display: flex; gap: 14px; align-items: flex-start; background: white; border-radius: 8px; padding: 12px 16px; box-shadow: 0 1px 5px rgba(0,0,0,.06); }
+.step-badge { min-width: 28px; height: 28px; background: var(--crimson); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-h); font-size: 12px; font-weight: 800; flex-shrink: 0; }
+.step-badge.navy { background: var(--navy); }
+.step h4 { font-family: var(--font-h); font-size: 11.5px; font-weight: 800; color: var(--navy); text-transform: uppercase; margin-bottom: 2px; }
+.step p { font-size: 12px; color: var(--slate); line-height: 1.45; }
+
+/* Agenda */
+.agenda { display: flex; flex-direction: column; gap: 10px; }
+.ag-item { display: flex; align-items: center; gap: 18px; background: white; border-radius: 8px; padding: 14px 18px; box-shadow: 0 1px 5px rgba(0,0,0,.06); }
+.ag-num { font-family: var(--font-h); font-size: 22px; font-weight: 900; color: var(--gold); width: 32px; flex-shrink: 0; }
+.ag-text h4 { font-family: var(--font-h); font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 2px; }
+.ag-text p { font-size: 12px; color: var(--slate); }
+
+/* Two-col split */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+@media (max-width: 1300px) {
+  .slide { width: 100%; height: auto; min-height: 56vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── SLIDE 1: COVER ── -->
+<div class="slide s-cover active" id="slide-1">
+  <div class="bg" style="background-image:url('../../assets/schools/GLC/Decision Day 2019.jpg');"></div>
+  <div class="ov"></div>
+  <div class="eyebrow">FutureReady NYC · NYCPS Office of Student Pathways · 2026</div>
+  <h1>Recruitment<br>&amp; <em>Retention</em><br>Playbook</h1>
+  <p class="sub">A prescriptive field guide for FRNYC program coordinators, school counselors, and new school partners.</p>
+  <div class="logos">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="ld"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="NYCPS Pathways" onerror="this.style.display='none'" />
+  </div>
+  <div class="cover-bar"></div>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">1 / 16</div>
+</div>
+
+<!-- ── SLIDE 2: AGENDA ── -->
+<div class="slide s-content" id="slide-2">
+  <div class="s-head"><div><div class="eyebrow">Overview</div><h2>What We'll Cover Today</h2></div></div>
+  <div class="s-body">
+    <div class="agenda">
+      <div class="ag-item"><div class="ag-num">01</div><div class="ag-text"><h4>The Recruitment Architecture</h4><p>The 5-stage framework: Awareness → Exploration → Commitment → Experience → Completion</p></div></div>
+      <div class="ag-item"><div class="ag-num">02</div><div class="ag-text"><h4>Filling the Pipeline — 8th Grade</h4><p>Open house strategy, NYCDOE app signal, small-group touchpoints</p></div></div>
+      <div class="ag-item"><div class="ag-num">03</div><div class="ag-text"><h4>The Internal Recruitment Cycle — 9th Grade</h4><p>Career Explorations, interest survey (opt-in AND opt-out), review &amp; reconcile</p></div></div>
+      <div class="ag-item"><div class="ag-num">04</div><div class="ag-text"><h4>Pathway Information Design</h4><p>Outcome · Skills · Experience · Payoff — how to communicate what the pathway delivers</p></div></div>
+      <div class="ag-item"><div class="ag-num">05</div><div class="ag-text"><h4>Equity — SWD &amp; MLL Access</h4><p>Structural barriers and actionable fixes for underrepresented populations</p></div></div>
+      <div class="ag-item"><div class="ag-num">06</div><div class="ag-text"><h4>What Success Looks Like</h4><p>KIMS metrics, success indicators, and Year 0 vs. Year 1+ next steps</p></div></div>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">2 / 16</div>
+</div>
+
+<!-- ── SLIDE 3: DIVIDER — Architecture ── -->
+<div class="slide s-div" id="slide-3">
+  <div class="bg" style="background-image:url('../../assets/schools/SEM/High School Fairs 9.21-9.22/UNADJUSTEDNONRAW_mini_43bf.jpg');"></div>
+  <div class="dnum">01</div>
+  <div class="drule"></div>
+  <h2>The Recruitment Architecture</h2>
+  <p class="dsub">A five-stage, year-round system — not a one-time campaign</p>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">3 / 16</div>
+</div>
+
+<!-- ── SLIDE 4: 5-STAGE FRAMEWORK ── -->
+<div class="slide s-content" id="slide-4">
+  <div class="s-head"><div><div class="eyebrow">Section 01 — Recruitment Architecture</div><h2>The Five-Stage Pipeline</h2></div></div>
+  <div class="s-body">
+    <p style="font-size:13px;color:var(--slate);line-height:1.6;margin-bottom:16px;">These five stages are sequential. Skipping or compressing any stage reduces conversion at the next. Awareness without exploration is just information. Exploration without commitment is just curiosity.</p>
+    <div class="cards-5">
+      <div class="p-card gold">
+        <div class="card-num">Stage 01</div>
+        <h3>Awareness</h3>
+        <p>Students learn FRNYC exists for people like them.</p>
+        <p class="risk">⚡ Curiosity is fragile — decays within days without follow-up</p>
+      </div>
+      <div class="p-card blue">
+        <div class="card-num">Stage 02</div>
+        <h3>Exploration</h3>
+        <p>Meaningful contact: panels, site visits, near-peer presentations.</p>
+        <p class="risk">Goal: identity integration — "this is for someone like me"</p>
+      </div>
+      <div class="p-card crimson">
+        <div class="card-num">Stage 03</div>
+        <h3>Commitment</h3>
+        <p>Decision Day as a formal ritual. Public commitments are more durable than private ones.</p>
+        <p class="risk">⚡ Summer gap erodes commitment — check in</p>
+      </div>
+      <div class="p-card green">
+        <div class="card-num">Stage 04</div>
+        <h3>Experience</h3>
+        <p>Relevant curriculum, strong teachers, WBL placements matched to interests.</p>
+      </div>
+      <div class="p-card purple">
+        <div class="card-num">Stage 05</div>
+        <h3>Completion</h3>
+        <p>Credential earned. Completers are next year's strongest recruiters.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p>"Stickiness comes from coupling awareness with exposure in a structured sequence. At a point when interest is integrated into students' sense of self, identity is more durable than interest."</p>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">4 / 16</div>
+</div>
+
+<!-- ── SLIDE 5: ENROLLMENT FUNNEL ── -->
+<div class="slide s-content" id="slide-5">
+  <div class="s-head"><div><div class="eyebrow">Section 01 — Recruitment Architecture</div><h2>Enrollment Funnel &amp; Year-Round Calendar</h2></div></div>
+  <div class="s-body">
+    <div class="two-col">
+      <div>
+        <h4 style="font-family:var(--font-h);font-size:11px;font-weight:800;text-transform:uppercase;color:var(--navy);letter-spacing:.06em;margin-bottom:12px;">Enrollment Funnel Benchmarks</h4>
+        <div class="funnel">
+          <div class="f-row"><div class="f-label">Awareness</div><div class="f-track"><div class="f-fill" style="width:100%"><span>100% of eligible students reached</span></div></div></div>
+          <div class="f-row"><div class="f-label">Exploration</div><div class="f-track"><div class="f-fill" style="width:78%"><span>~78% structured touchpoint</span></div></div></div>
+          <div class="f-row"><div class="f-label">Applied/Survey</div><div class="f-track"><div class="f-fill" style="width:54%"><span>~54% respond to survey</span></div></div></div>
+          <div class="f-row"><div class="f-label">Enrolled</div><div class="f-track"><div class="f-fill" style="width:38%"><span>~38% by October 1</span></div></div></div>
+          <div class="f-row"><div class="f-label">Completion</div><div class="f-track"><div class="f-fill" style="width:28%"><span>~28% earn credential</span></div></div></div>
+        </div>
+        <div class="tip" style="margin-top:14px;">
+          <div class="tip-icon">⚡</div>
+          <p><strong>Any conversion rate 10+ points below benchmark triggers an immediate, specific intervention plan</strong> — not just increased promotion.</p>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-h);font-size:11px;font-weight:800;text-transform:uppercase;color:var(--navy);letter-spacing:.06em;margin-bottom:12px;">Year-Round Action Windows</h4>
+        <div class="steps">
+          <div class="step"><div class="step-badge navy">S–O</div><div><h4>September–October</h4><p>Plan open houses. Build feeder school relationships. Confirm pathway codes on all materials.</p></div></div>
+          <div class="step"><div class="step-badge navy">N–D</div><div><h4>November–December</h4><p>Run open houses 2–3 wks before NYCDOE app deadline. Deploy ambassadors. Small-group touchpoints.</p></div></div>
+          <div class="step"><div class="step-badge navy">J–M</div><div><h4>January–March</h4><p>Follow up with pathway code applicants. Mid-year advising check-ins. Site visits and job shadows.</p></div></div>
+          <div class="step"><div class="step-badge navy">A–M</div><div><h4>April–May</h4><p>Decision Day for incoming students. Interest survey to ALL 9th graders. Review &amp; reconcile with leadership.</p></div></div>
+          <div class="step"><div class="step-badge navy">J–A</div><div><h4>June–August</h4><p>Summer gap touchpoints. Confirm October 1 enrollment list. End-of-season debrief by August 31.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">5 / 16</div>
+</div>
+
+<!-- ── SLIDE 6: DIVIDER — 8th Grade ── -->
+<div class="slide s-div" id="slide-6">
+  <div class="bg" style="background-image:url('../../assets/schools/SEM/IMG_0487.jpg');"></div>
+  <div class="dnum">02</div>
+  <div class="drule"></div>
+  <h2>Filling the Pipeline —<br>8th Grade Recruitment</h2>
+  <p class="dsub">The pipeline that feeds 9th grade begins in 8th. Schools that wait lose two years before realizing it.</p>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">6 / 16</div>
+</div>
+
+<!-- ── SLIDE 7: 8TH GRADE STRATEGY ── -->
+<div class="slide s-content" id="slide-7">
+  <div class="s-head"><div><div class="eyebrow">Section 02 — 8th Grade Recruitment</div><h2>Open House Strategy &amp; NYCDOE App Signal</h2></div></div>
+  <div class="s-body">
+    <div class="two-col">
+      <div>
+        <div class="key-moment">
+          <div class="kml">Key Moment</div>
+          <p>The open house 2–3 weeks before the NYCDOE application deadline is the highest-leverage event in 8th grade recruitment. Everything else supports it.</p>
+        </div>
+        <h4 style="font-family:var(--font-h);font-size:11px;font-weight:800;text-transform:uppercase;color:var(--navy);margin:14px 0 8px;">What to Do at Open Houses</h4>
+        <div class="steps">
+          <div class="step"><div class="step-badge">1</div><div><h4>Deploy Student Ambassadors</h4><p>Current FRNYC students speak 2–3 minutes with a clear script. Authenticity converts.</p></div></div>
+          <div class="step"><div class="step-badge">2</div><div><h4>Show Real Student Work</h4><p>Portfolios, credentials, project demos — not program brochures.</p></div></div>
+          <div class="step"><div class="step-badge">3</div><div><h4>Walk the App Together</h4><p>Announce pathway codes and help families complete the NYCDOE app in the room.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-h);font-size:11px;font-weight:800;text-transform:uppercase;color:var(--navy);margin-bottom:10px;">The NYCDOE App as Signal of Interest</h4>
+        <div class="p-card gold" style="margin-bottom:12px;">
+          <h3>Pathway Code = First Signal</h3>
+          <p>Students who list an FRNYC school's pathway code as 1st or 2nd choice have self-identified as interested. Track these students. Follow up within 48 hours of the app window closing.</p>
+        </div>
+        <div class="p-card" style="border-top-color:#3B82F6;">
+          <h3>After the Open House</h3>
+          <ul>
+            <li>Follow up within 48 hours with interested families</li>
+            <li>Share pathway Outcome/Skills/Experience/Payoff brief</li>
+            <li>Students blocked by scheduling get an individual conversation — not a form rejection</li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-top:10px;">
+          <div class="tip-icon">⚡</div>
+          <p><strong>Year 0 tip:</strong> 2 high-quality open houses beat 5 generic ones. Depth converts. Breadth builds name recognition only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">7 / 16</div>
+</div>
+
+<!-- ── SLIDE 8: DIVIDER — Internal Cycle ── -->
+<div class="slide s-div" id="slide-8">
+  <div class="bg" style="background-image:url('../../assets/schools/BASE/Summer Bridge.JPG');"></div>
+  <div class="dnum">03</div>
+  <div class="drule"></div>
+  <h2>The Internal Recruitment<br>Cycle — 9th Grade</h2>
+  <p class="dsub">The most important recruitment event of the year happens inside your school, in May, with every 9th grader.</p>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">8 / 16</div>
+</div>
+
+<!-- ── SLIDE 9: 9TH GRADE CYCLE ── -->
+<div class="slide s-content" id="slide-9">
+  <div class="s-head"><div><div class="eyebrow">Section 03 — Internal Recruitment Cycle</div><h2>Interest Survey → Review &amp; Reconcile → Confirm</h2></div></div>
+  <div class="s-body">
+    <div class="cards-3">
+      <div class="p-card">
+        <div class="card-num">Phase 01 — Sept to Spring Break</div>
+        <h3>Generate Awareness</h3>
+        <ul>
+          <li>Career Explorations course introduces pathways to 9th graders</li>
+          <li>Near-peer presentations in all 9th grade advisories — seniors including those NOT in FRNYC</li>
+          <li>Schools with Career Explorations preview courses report 75%+ opt-in from 9th graders who attended</li>
+        </ul>
+      </div>
+      <div class="p-card gold">
+        <div class="card-num">Phase 02 — May (Critical)</div>
+        <h3>Interest Survey</h3>
+        <ul>
+          <li>PowerPoint in all 9th grade advisories first</li>
+          <li>Google Form survey to <strong>every</strong> 9th grader within 1–2 weeks</li>
+          <li><strong>Critical design:</strong> NOT an opt-in. Every student must respond: Yes / No / Maybe</li>
+          <li>Ensures no one is missed and no one is assumed to be uninterested</li>
+        </ul>
+        <div class="key-moment" style="margin-top:8px;padding:10px 12px;">
+          <div class="kml">Key Moment</div>
+          <p style="font-size:12px;">The opt-in AND opt-out survey to all 9th graders in May is the highest-leverage action of the internal cycle.</p>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="card-num">Phase 03 — May/June</div>
+        <h3>Review, Reconcile &amp; Confirm</h3>
+        <ul>
+          <li>Principal + AP of Instruction + grade team review results together</li>
+          <li>Cross-reference against master schedule: IEP services, AP conflicts, grade repetition</li>
+          <li>Students who said yes but can't be scheduled get an individual conversation</li>
+          <li>Confirmed students receive acceptance letter + branded materials</li>
+          <li>Summer gap touchpoint before September — postcard, group chat, or call</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">⚡</div>
+      <p><strong>The summer gap is an underused retention touchpoint.</strong> The period between June acceptance and September arrival consistently erodes commitment. A postcard or a group chat message costs almost nothing and prevents enthusiasm from fading.</p>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">9 / 16</div>
+</div>
+
+<!-- ── SLIDE 10: DIVIDER — Pathway Design ── -->
+<div class="slide s-div" id="slide-10">
+  <div class="bg" style="background-image:url('../../assets/schools/LGJ/Pfizer Career Event.jpg');"></div>
+  <div class="dnum">04</div>
+  <div class="drule"></div>
+  <h2>Pathway Information Design</h2>
+  <p class="dsub">Abstract language doesn't move students. Specific, concrete outcomes do.</p>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">10 / 16</div>
+</div>
+
+<!-- ── SLIDE 11: PATHWAY FRAMEWORK ── -->
+<div class="slide s-content" id="slide-11">
+  <div class="s-head"><div><div class="eyebrow">Section 04 — Pathway Information Design</div><h2>The Outcome / Skills / Experience / Payoff Framework</h2></div></div>
+  <div class="s-body">
+    <p style="font-size:13px;color:var(--slate);line-height:1.6;margin-bottom:14px;">Every FRNYC pathway must answer these four questions — specifically and concretely. Students who choose pathways aligned to personal meaning stay. Students who were placed or drifted into a pathway often leave.</p>
+    <div class="four-quad">
+      <div class="fq outcome">
+        <div class="fl">The Outcome — Why It Matters</div>
+        <h4>What careers does this open?</h4>
+        <ul>
+          <li>Clear careers and associated wages (specific dollar amounts)</li>
+          <li>Tangible benefits: income, credentials, college credits</li>
+          <li>Avoid: "career readiness," "industry exposure," "21st century skills"</li>
+        </ul>
+      </div>
+      <div class="fq skills">
+        <div class="fl">The Skills — What Students Will Learn</div>
+        <h4>What will students be able to do?</h4>
+        <ul>
+          <li>Specific, practical skills — focus on what students <em>can do</em></li>
+          <li>Concrete demonstrations: portfolio, certification, project</li>
+          <li>Avoid: abstract learning objectives</li>
+        </ul>
+      </div>
+      <div class="fq exp">
+        <div class="fl">The Experience — What the Day Looks Like</div>
+        <h4>What will students actually do?</h4>
+        <ul>
+          <li>Projects, fieldwork, and WBL examples</li>
+          <li>Real-world exposure: sites, partners, environments</li>
+          <li>Photos of actual student work — not stock images</li>
+        </ul>
+      </div>
+      <div class="fq payoff">
+        <div class="fl">The Payoff — What They Leave With</div>
+        <h4>What do they have at graduation?</h4>
+        <ul>
+          <li>Industry-recognized certifications earned</li>
+          <li>College credits completed before graduation</li>
+          <li>Work experience and internship documentation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">11 / 16</div>
+</div>
+
+<!-- ── SLIDE 12: DIVIDER — Equity ── -->
+<div class="slide s-div" id="slide-12">
+  <div class="bg" style="background-image:url('../../assets/schools/SEM/Climate Strike 2.jpg');"></div>
+  <div class="dnum">05</div>
+  <div class="drule"></div>
+  <h2>Equity —<br>SWD &amp; MLL Access</h2>
+  <p class="dsub">Underrepresentation is not a sign of disinterest. It is a sign of structural barriers schools are responsible for removing.</p>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">12 / 16</div>
+</div>
+
+<!-- ── SLIDE 13: EQUITY ── -->
+<div class="slide s-content" id="slide-13">
+  <div class="s-head"><div><div class="eyebrow">Section 05 — Equity</div><h2>SWD &amp; MLL: Barriers and Actionable Fixes</h2></div></div>
+  <div class="s-body">
+    <p style="font-size:13px;color:var(--slate);line-height:1.6;margin-bottom:14px;">SWD and MLL students are frequently underrepresented in FRNYC pathways — not because they aren't interested, but because structural barriers push them out. Strong programs actively track who is and isn't enrolled, set explicit equity targets, and problem-solve barriers before they become attrition.</p>
+    <div class="barrier-list">
+      <div class="barrier">
+        <div class="b-num">1</div>
+        <div class="b-problem"><h5>Scheduling Conflicts (SWD)</h5><p>IEP mandated services and AP placement pull SWD students from pathway slots before anyone notices.</p></div>
+        <div class="b-fix"><h5>Fix</h5><p>Principal + AP cross-reference survey results with master schedule. Students blocked by schedule get individual conversations — not form rejections.</p></div>
+      </div>
+      <div class="barrier">
+        <div class="b-num">2</div>
+        <div class="b-problem"><h5>Language Access (MLL)</h5><p>English-only materials mean MLL families receive less information and make less-informed decisions.</p></div>
+        <div class="b-fix"><h5>Fix</h5><p>Translate all core pathway materials into top 3 home languages. Recruit bilingual near-peer ambassadors. Partner with ENL department for co-outreach.</p></div>
+      </div>
+      <div class="barrier">
+        <div class="b-num">3</div>
+        <div class="b-problem"><h5>ECC Prerequisites (Both)</h5><p>Prerequisites disproportionately exclude SWD and MLL students who are on track but not in accelerated sequences.</p></div>
+        <div class="b-fix"><h5>Fix</h5><p>Audit prerequisite lists annually. Identify which barriers are structural requirements vs. inherited assumptions. Work with OSP to expand access pathways.</p></div>
+      </div>
+      <div class="barrier">
+        <div class="b-num">4</div>
+        <div class="b-problem"><h5>Representation Gap</h5><p>Materials and ambassador corps with limited SWD/MLL representation signal "this pathway is not for people like me."</p></div>
+        <div class="b-fix"><h5>Fix</h5><p>Intentionally recruit SWD and MLL alumni as ambassadors. Review all visual materials for representation before publication.</p></div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:10px;">
+      <div class="tip-icon">⚡</div>
+      <p><strong>Equity target:</strong> The % of enrolled FRNYC students who are SWD and MLL should reflect the school's population. Significant gaps trigger a school-level equity review — not a communications fix.</p>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">13 / 16</div>
+</div>
+
+<!-- ── SLIDE 14: WHAT SUCCESS LOOKS LIKE ── -->
+<div class="slide s-content" id="slide-14">
+  <div class="s-head"><div><div class="eyebrow">Section 06 — Success Metrics</div><h2>What Success Looks Like — KIMS Metrics</h2></div></div>
+  <div class="s-body">
+    <p style="font-size:12.5px;color:var(--slate);line-height:1.6;margin-bottom:12px;">Define success before you begin. Track it weekly. Any metric 10+ points below benchmark by midpoint triggers a specific, documented intervention.</p>
+    <table class="kims-t">
+      <thead>
+        <tr><th style="width:30%;">Outcome</th><th style="width:42%;">How to Measure</th><th>System / Timing</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="oc">Pathway seats filled at enrollment</td><td>KIMS enrollment numbers; % of target cohort by October 1</td><td>KIMS · Weekly Sept–Oct</td></tr>
+        <tr><td class="oc">Students reflect genuine pathway interest</td><td>Interest survey at enrollment; advising check-in self-reports</td><td>School-managed · May + Sept</td></tr>
+        <tr><td class="oc">Families understand the program</td><td>Parent info session attendance; parent survey after enrollment</td><td>School-managed · October</td></tr>
+        <tr><td class="oc">Students stay through graduation</td><td>Year-over-year cohort retention rate by pathway</td><td>KIMS · Each June</td></tr>
+        <tr><td class="oc">Students complete WBL and ECC</td><td>KIMS: WBL hours logged; ECC credits accrued by grade</td><td>KIMS · Each semester</td></tr>
+        <tr><td class="oc">Equitable representation (SWD &amp; MLL)</td><td>% enrolled SWD/MLL vs. school population</td><td>KIMS + school data · At enrollment</td></tr>
+      </tbody>
+    </table>
+    <div class="stats-row" style="margin-top:14px;">
+      <div class="stat-box"><div class="sn" style="font-size:28px;">Oct 1</div><div class="sl">KIMS enrollment target — primary accountability date</div></div>
+      <div class="stat-box"><div class="sn" style="font-size:28px;">May</div><div class="sl">Interest survey — all 9th graders respond, opt-in AND opt-out</div></div>
+      <div class="stat-box"><div class="sn" style="font-size:28px;">Aug 31</div><div class="sl">End-of-season debrief — next year's plan starts here</div></div>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">14 / 16</div>
+</div>
+
+<!-- ── SLIDE 15: NEXT STEPS ── -->
+<div class="slide s-content" id="slide-15">
+  <div class="s-head"><div><div class="eyebrow">Action Plan</div><h2>Next Steps by Role &amp; School Year</h2></div></div>
+  <div class="s-body">
+    <div class="year-compare" style="margin-bottom:16px;">
+      <div class="yc-col">
+        <div class="yc-h y0">Year 0 — New FRNYC Schools</div>
+        <div class="yc-b">
+          <ul>
+            <li>Designate your FRNYC coordinator before November 1</li>
+            <li>Confirm NYCDOE pathway codes; put them on all open house materials</li>
+            <li>Schedule your first open house 6–8 weeks before app deadline</li>
+            <li>Update all pathway descriptions to Outcome/Skills/Experience/Payoff format</li>
+            <li>Set Year 0 enrollment target with OSP support</li>
+            <li>Attend FRNYC coordinator onboarding sessions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="yc-col">
+        <div class="yc-h y1">Year 1+ — Existing FRNYC Schools</div>
+        <div class="yc-b">
+          <ul>
+            <li>Review last year's funnel data — where did conversion drop?</li>
+            <li>Rebuild ambassador corps from last year's completers by October 15</li>
+            <li>Close identified equity gaps (SWD, MLL) with a specific plan</li>
+            <li>Deploy opt-in AND opt-out interest survey to all 9th graders in May</li>
+            <li>Send summer gap touchpoint to confirmed cohort before July 1</li>
+            <li>Complete post-season debrief by August 31</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <p>"Recruitment is not an event; it is a year-round process that begins in 8th grade. Schools that wait until 10th grade to introduce pathways consistently struggle to fill cohorts with genuinely interested students."</p>
+    </div>
+  </div>
+  <div class="s-foot">
+    <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+    <div class="fd"></div>
+    <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="OSP" onerror="this.style.display='none'" />
+    <div class="fl">Recruitment &amp; Retention Playbook 2026</div>
+  </div>
+  <div class="slide-num">15 / 16</div>
+</div>
+
+<!-- ── SLIDE 16: CLOSING ── -->
+<div class="slide s-cover" id="slide-16" style="justify-content:center;align-items:center;text-align:center;">
+  <div class="bg" style="background-image:url('../../assets/schools/GLC/Grads + Cheryl Willis.jpg'); background-position:center top;"></div>
+  <div class="ov"></div>
+  <div style="position:relative;max-width:680px;">
+    <div style="font-family:var(--font-h);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">FutureReady NYC · 2026</div>
+    <h2 style="font-family:var(--font-h);font-size:50px;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;margin-bottom:16px;">Every Student Has a Pathway.<br>Your Job Is to <em style="color:var(--gold);font-style:normal;">Find It.</em></h2>
+    <p style="font-size:17px;color:rgba(255,255,255,.68);line-height:1.65;margin-bottom:40px;">Thank you. Download the full playbook for the complete prescriptive guide, quick reference cards, and messaging templates.</p>
+    <div class="logos">
+      <img src="../../assets/FRNYC logo and OSP logos/FRNYC_Logo-KO_hztl.png" alt="FRNYC" onerror="this.style.display='none'" />
+      <div class="ld"></div>
+      <img src="../../assets/FRNYC logo and OSP logos/NYCPS-Pathways-logo-color-reversed.png" alt="NYCPS Pathways" onerror="this.style.display='none'" />
+    </div>
+  </div>
+  <div class="cover-bar"></div>
+  <div class="slide-num" style="color:rgba(255,255,255,.4);">16 / 16</div>
+</div>
+
+<!-- ── CONTROLS ── -->
+<div class="controls">
+  <button onclick="prevSlide()">← Prev</button>
+  <div class="ctrl-ct" id="counter">1 / 16</div>
+  <button onclick="nextSlide()">Next →</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+function showSlide(n) {
+  slides[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function nextSlide() { showSlide(cur + 1); }
+function prevSlide() { showSlide(cur - 1); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevSlide();
+});
+</script>
+</body>
+</html>
