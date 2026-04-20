@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FRNYC Software Development Pathway — Student Flyer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Segoe UI', Arial, sans-serif;
+      background: #f0f2f5;
+      color: #1a2b4a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: #1a2b4a;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    header h1 {
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .accent-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #f5a623 0%, #5b8ec4 50%, #7cb542 100%);
+    }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 620px;
+    }
+
+    .intro h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a2b4a;
+      margin-bottom: 12px;
+    }
+
+    .intro p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .flyer-frame {
+      width: 100%;
+      max-width: 680px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26, 43, 74, 0.18);
+    }
+
+    .flyer-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    .downloads {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .btn-png  { background: #1a2b4a; color: #fff; }
+    .btn-pdf  { background: #f5a623; color: #1a2b4a; }
+    .btn-pptx { background: #5b8ec4; color: #fff; }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .pathway-cards {
+      width: 100%;
+      max-width: 680px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 22px 20px;
+      box-shadow: 0 2px 12px rgba(26,43,74,0.08);
+      border-top: 5px solid var(--card-color);
+    }
+
+    .card .year {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--card-color);
+      margin-bottom: 4px;
+    }
+
+    .card .label {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a2b4a;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .card-9  { --card-color: #5b8ec4; }
+    .card-10 { --card-color: #f5a623; }
+    .card-11 { --card-color: #7cb542; }
+    .card-12 { --card-color: #1a2b4a; }
+
+    footer {
+      width: 100%;
+      background: #f5a623;
+      padding: 24px 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a2b4a;
+      letter-spacing: 0.04em;
+    }
+
+    footer a {
+      color: #1a2b4a;
+    }
+
+    @media (max-width: 520px) {
+      .pathway-cards { grid-template-columns: 1fr; }
+      header h1 { font-size: 1rem; }
+      .intro h2 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>FRNYC &mdash; Software Development Pathway</h1>
+</header>
+<div class="accent-bar"></div>
+
+<main>
+
+  <div class="intro">
+    <h2>Build Real Software. Get Paid to Learn. Graduate Ready.</h2>
+    <p>
+      The FRNYC Software Development Pathway is a four-year program for NYC high school students.
+      You'll write real code, earn college credits, and land a paid internship &mdash; all before graduation.
+    </p>
+  </div>
+
+  <div class="flyer-frame">
+    <img src="FRNYC_SoftwareDev_Flyer_v3.png" alt="FRNYC Software Development Pathway Flyer">
+  </div>
+
+  <div class="downloads">
+    <a class="btn btn-png" href="FRNYC_SoftwareDev_Flyer_v3.png" download>
+      <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+      Download PNG
+    </a>
+    <a class="btn btn-pdf" href="FRNYC_SoftwareDev_Flyer_v3.pdf" download>
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17v-1h8v1H8zm0-3v-1h8v1H8zm0-3V10h4v1H8z"/></svg>
+      Download PDF
+    </a>
+    <a class="btn btn-pptx" href="FRNYC_SoftwareDev_Flyer_v3.pptx" download>
+      <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3H9v3H7V6h5zm-3 5h3a1 1 0 0 0 0-2H9v2z"/></svg>
+      Download PPTX
+    </a>
+  </div>
+
+  <div class="pathway-cards">
+    <div class="card card-9">
+      <div class="year">9th Grade</div>
+      <div class="label">Explore</div>
+      <p>Try coding, see if it's for you, and build your first projects.</p>
+    </div>
+    <div class="card card-10">
+      <div class="year">10th Grade</div>
+      <div class="label">Learn</div>
+      <p>Get better at coding, earn your first certification, and visit real worksites.</p>
+    </div>
+    <div class="card card-11">
+      <div class="year">11th Grade</div>
+      <div class="label">Apply</div>
+      <p>Get a paid internship and start earning college credits.</p>
+    </div>
+    <div class="card card-12">
+      <div class="year">12th Grade</div>
+      <div class="label">Launch</div>
+      <p>Graduate with real experience, certifications, and projects you built.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Future Ready NYC &nbsp;&bull;&nbsp; <a href="https://www.frnyc.org" target="_blank" rel="noopener">frnyc.org</a>
+  &nbsp;&bull;&nbsp; Talk to your school counselor to apply.
+</footer>
+
+</body>
+</html>
